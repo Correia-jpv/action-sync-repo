@@ -1,0 +1,39 @@
+# action.yml
+name: 'Sync Repo'
+description: 'Sync github repository with non-github repo'
+inputs:
+  src_repo:
+    description: Non-github repo to pull
+    required: true
+  src_branch:
+    description: Branch name of source repo to pull
+    required: false
+    default: 'master'
+  dest_repo:
+    description: github repo to sync
+    required: true
+  dest_branch:
+    description: Branch name of destination repo to sync
+    required: false
+    default: 'master'
+  for_upstream_branch:
+    description: Name of upstream branch
+    required: false
+    default: 'none'
+  secret_token:
+    description: Secret token for destination repo
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    SECRET_TOKEN: ${{ inputs.secret_token }}
+    FOR_UPSTREAM_BRANCH: ${{ inputs.for_upstream_branch }}
+  args:
+    - ${{ inputs.src_repo }}
+    - ${{ inputs.src_branch }}
+    - ${{ inputs.dest_repo }}
+    - ${{ inputs.dest_branch }}
+branding:
+  icon: 'git-merge'
+  color: '#0082FC'
