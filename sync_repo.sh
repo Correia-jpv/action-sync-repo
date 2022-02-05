@@ -29,10 +29,10 @@ git fetch source '+refs/heads/*:refs/heads/*' --update-head-ok
 # Print out all branches
 git --no-pager branch -a -vv
 
-ls
+
 if [ ! -z "$IGNORE_FOLDER" ]
 then
 	git rm -rf $IGNORE_FOLDER ||:
 	git commit . -m "Remove $IGNORE_FOLDER"
+	git push destination "${SOURCE_BRANCH}:${DESTINATION_BRANCH}" -f
 fi
-git push destination "${SOURCE_BRANCH}:${DESTINATION_BRANCH}" -f
