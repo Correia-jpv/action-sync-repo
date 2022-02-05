@@ -19,12 +19,7 @@ echo "SOURCE=$SOURCE_REPO:$SOURCE_BRANCH"
 echo "DESTINATION=$DESTINATION_REPO:$DESTINATION_BRANCH"
 
 git clone "$SOURCE_REPO" /root/source --origin source && cd /root/source
-ls
-if [ ! -z "$IGNORE_FOLDER" ]
-then
-	git rm -rf $IGNORE_FOLDER ||:
-	git commit . -m "Remove $IGNORE_FOLDER"
-fi
+
 
 git remote add destination "$DESTINATION_REPO"
 
@@ -34,5 +29,10 @@ git fetch source '+refs/heads/*:refs/heads/*' --update-head-ok
 # Print out all branches
 git --no-pager branch -a -vv
 
-
+ls
+if [ ! -z "$IGNORE_FOLDER" ]
+then
+	git rm -rf $IGNORE_FOLDER ||:
+	git commit . -m "Remove $IGNORE_FOLDER"
+fi
 git push destination "${SOURCE_BRANCH}:${DESTINATION_BRANCH}" -f
