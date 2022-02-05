@@ -19,7 +19,6 @@ inputs:
   ignore_folder:
     description: Folder to ignore from source repository
     required: false
-    default: 'none'
   for_upstream_branch:
     description: Name of upstream branch
     required: false
