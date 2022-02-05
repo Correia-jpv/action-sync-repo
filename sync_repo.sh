@@ -4,7 +4,7 @@ set -e
 set -x
 
 SOURCE_REPO=$1
-SOURCE_BRANCH=HEAD
+SOURCE_BRANCH=$2
 DESTINATION_REPO=$3
 DESTINATION_BRANCH=$4
 IGNORE_FOLDER=$5
@@ -20,7 +20,7 @@ echo "DESTINATION=$DESTINATION_REPO:$DESTINATION_BRANCH"
 
 git clone "$SOURCE_REPO" /root/source --origin source && cd /root/source
 
-if [ -z "$IGNORE_FOLDER" ]
+if [ -z $IGNORE_FOLDER ]
 then
 	git rm -r $IGNORE_FOLDER
 	git commit . -m "Remove $IGNORE_FOLDER"
