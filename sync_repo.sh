@@ -19,10 +19,10 @@ echo "SOURCE=$SOURCE_REPO:$SOURCE_BRANCH"
 echo "DESTINATION=$DESTINATION_REPO:$DESTINATION_BRANCH"
 
 git clone "$SOURCE_REPO" /root/source --origin source && cd /root/source
-
+ls
 if [ ! -z "$IGNORE_FOLDER" ]
 then
-	git rm -r $IGNORE_FOLDER
+	git rm -rf $IGNORE_FOLDER ||:
 	git commit . -m "Remove $IGNORE_FOLDER"
 fi
 
