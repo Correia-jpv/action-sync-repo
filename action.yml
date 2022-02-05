@@ -34,7 +34,7 @@ runs:
     - ${{ inputs.src_branch }}
     - ${{ inputs.dest_repo }}
     - ${{ inputs.dest_branch }}
-    - ${{ inputs.ignore-folder }}
+    - ${{ inputs.ignore_folder }}
 branding:
   icon: 'git-merge'
   color: '#0082FC'

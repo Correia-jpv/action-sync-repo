@@ -1,11 +1,13 @@
 #!/bin/sh -l
 
 set -e
+set -x
 
 SOURCE_REPO=$1
 SOURCE_BRANCH=HEAD
 DESTINATION_REPO=$3
 DESTINATION_BRANCH=$4
+IGNORE_FOLDER=$5
 
 git config user.name "$GITHUB_ACTOR"
 git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
@@ -18,10 +20,10 @@ echo "DESTINATION=$DESTINATION_REPO:$DESTINATION_BRANCH"
 
 git clone "$SOURCE_REPO" /root/source --origin source && cd /root/source
 
-if [ -z "$INPUT_IGNORE_FOLDER" ]
+if [ -z "$IGNORE_FOLDER" ]
 then
-	git rm -r $INPUT_IGNORE_FOLDER
-	git commit . -m "Remove $INPUT_IGNORE_FOLDER"
+	git rm -r $IGNORE_FOLDER
+	git commit . -m "Remove $IGNORE_FOLDER"
 fi
 
 git remote add destination "$DESTINATION_REPO"
