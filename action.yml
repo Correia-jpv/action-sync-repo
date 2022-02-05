@@ -16,9 +16,6 @@ inputs:
     description: Branch name of destination repo to sync
     required: false
     default: 'master'
-  ignore_folder:
-    description: Folder to ignore from source repository
-    required: false
   for_upstream_branch:
     description: Name of upstream branch
     required: false
@@ -37,7 +34,7 @@ runs:
     - ${{ inputs.src_branch }}
     - ${{ inputs.dest_repo }}
     - ${{ inputs.dest_branch }}
-    - ${{ inputs.ignore_folder }}
+    - ${{ inputs.ignore-folder }}
 branding:
   icon: 'git-merge'
   color: '#0082FC'
