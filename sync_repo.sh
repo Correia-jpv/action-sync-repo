@@ -7,6 +7,10 @@ SOURCE_BRANCH=HEAD
 DESTINATION_REPO=$3
 DESTINATION_BRANCH=$4
 
+git config --global --add safe.directory "${GITHUB_WORKSPACE}"
+
+cd "${GITHUB_WORKSPACE}" || exit
+
 git config user.name "$GITHUB_ACTOR"
 git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
